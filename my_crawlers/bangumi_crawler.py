@@ -99,22 +99,33 @@ def get_mainpost_data(postSoup: BeautifulSoup, threadData):
     # 初始化主帖数据
     myMainPost = {}
     
-    # headerSubject里的h1标签里的a标签保存着番剧名与链接
-    bangumiName = postSoup.find('div', {'id': 'headerSubject'}).find('h1').find('a')
     """ BANGUMI_URL """
-    myMainPost['BANGUMI_URL'] = threadData['SOURCE_URL'] + bangumiName['href']
+    # 直接从threadData获取
+    myMainPost['BANGUMI_URL'] = threadData['THREAD_URL']
+
     """ BANGUMI_NAME """
-    myMainPost['BANGUMI_NAME'] = bangumiName.decode_contents()
+    # headerSubject里的h1标签里的a标签保存着番剧名
+    bangumiName = postSoup.find('div', {'id': 'headerSubject'}).find('h1').find('a')
+    if bangumiName: # 存在番剧名
+        myMainPost['BANGUMI_NAME'] = bangumiName.decode_contents()
+    else: # 不存在则为空
+        myMainPost['BANGUMI_NAME'] = ''
 
     """ BANGUMI_IMG """
     # bangumiInfo里的img就是番剧图片
     bangumiImg = postSoup.find('div', {'id': 'bangumiInfo'}).find('img')
-    myMainPost['BANGUMI_IMG'] = bangumiImg['src']
+    if bangumiImg: # 存在番剧图片
+        myMainPost['BANGUMI_IMG'] = bangumiImg['src']
+    else: # 不存在则为空
+        myMainPost['BANGUMI_IMG'] = ''
 
     """ BANGUMI_CONTENT """
     # id="subject_summary"的div标签里保存着番剧介绍内容
     bangumiContent = postSoup.find('div', {'id': 'subject_summary'})
-    myMainPost['BANGUMI_CONTENT'] = bangumiContent.decode_contents()
+    if bangumiContent: # 存在番剧介绍
+        myMainPost['BANGUMI_CONTENT'] = bangumiContent.decode_contents()
+    else: # 不存在则为空
+        myMainPost['BANGUMI_CONTENT'] = ''
 
     """ myPostImgs """
     myMainPost['myPostImgs'] = []
@@ -194,11 +205,3 @@ def main(threadUrl):
     return threadData
 
 
-# #测试
-# # 获取bangumi页面的html
-# threadData = main('https://bangumi.tv/subject/424379')
-
-# # 打开一个文件，如果不存在则创建  
-# with open('./bgmtest_data.html', 'w', encoding='utf-8') as file:  
-#     # 写入字符串到文件  
-#     file.write(str(threadData))
