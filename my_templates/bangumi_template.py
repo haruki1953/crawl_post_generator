@@ -26,6 +26,19 @@ customCssOfHtml = '''
         border-radius: 10px;
     }
 
+    .bangumi_info {
+        margin: 0 auto !important;
+        margin-top: 10px !important;
+        width: 200px;
+        list-style-type: none;
+        padding-inline-start: 0px !important;
+        line-height: 24px !important;
+    }
+
+    .bangumi_tip {
+        color: #666;
+    }
+
     .bangumi_char_img {
         width: 48px;
         /* height: 48px; */
@@ -72,9 +85,17 @@ threadOfHtml = '''
 # 主贴的模板
 mainpostOfHtml = '''
 <div class="my_post bangumi_container">
-    <!-- 番剧图片 -->
     <div class="bangumi_imgbox">
+        <!-- 番剧图片 -->
         <img src="{BANGUMI_IMG}" class="bangumi_img" tittle="{BANGUMI_NAME}">
+        <!-- 番剧信息 -->
+        <ul class="bangumi_info">
+            <li><span class="bangumi_tip">中文名: </span>{BANGUMI_CHINESE}</li>
+            <li><span class="bangumi_tip">话数: </span>{BANGUMI_EPISODE}</li>
+            <li><span class="bangumi_tip">放送开始: </span>{BANGUMI_DATE}</li>
+            <li><span class="bangumi_tip">放送星期: </span>{BANGUMI_WEEKDAY}</li>
+            <li><span class="bangumi_tip">评分: </span>{BANGUMI_SCORE}</li>
+        </ul>
     </div>
     <div class="bangumi_content">
         <!-- 番剧标题链接  -->

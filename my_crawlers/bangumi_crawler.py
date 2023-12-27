@@ -16,6 +16,11 @@ threadData = {
         'BANGUMI_IMG': '番剧图片',
         'BANGUMI_NAME': '番剧名',
         'BANGUMI_CONTENT': '番剧介绍内容',
+        'BANGUMI_CHINESE': '中文名',
+        'BANGUMI_EPISODE': '话数',
+        'BANGUMI_DATE': '放送开始日期',
+        'BANGUMI_WEEKDAY': '放送星期',
+        'BANGUMI_SCORE': '评分',
         'myPostImgs': [
             {'BANGUMI_CHAR_IMG':'角色的图片'},
         ]
@@ -92,6 +97,11 @@ def get_mainpost_data(postSoup: BeautifulSoup, threadData):
     'BANGUMI_IMG': '番剧图片',
     'BANGUMI_NAME': '番剧名',
     'BANGUMI_CONTENT': '番剧介绍内容',
+    'BANGUMI_CHINESE': '中文名',
+    'BANGUMI_EPISODE': '话数',
+    'BANGUMI_DATE': '放送开始日期',
+    'BANGUMI_WEEKDAY': '放送星期',
+    'BANGUMI_SCORE': '评分',
     'myPostImgs': [
         {'BANGUMI_CHAR_IMG':'角色的图片'},
     ]}
@@ -106,26 +116,43 @@ def get_mainpost_data(postSoup: BeautifulSoup, threadData):
     """ BANGUMI_NAME """
     # headerSubject里的h1标签里的a标签保存着番剧名
     bangumiName = postSoup.find('div', {'id': 'headerSubject'}).find('h1').find('a')
-    if bangumiName: # 存在番剧名
-        myMainPost['BANGUMI_NAME'] = bangumiName.decode_contents()
-    else: # 不存在则为空
-        myMainPost['BANGUMI_NAME'] = ''
+    # 存在番剧名则赋值，不存在则为空
+    myMainPost['BANGUMI_NAME'] = bangumiName.decode_contents() if bangumiName else ''
 
     """ BANGUMI_IMG """
     # bangumiInfo里的img就是番剧图片
     bangumiImg = postSoup.find('div', {'id': 'bangumiInfo'}).find('img')
-    if bangumiImg: # 存在番剧图片
-        myMainPost['BANGUMI_IMG'] = bangumiImg['src']
-    else: # 不存在则为空
-        myMainPost['BANGUMI_IMG'] = ''
+    myMainPost['BANGUMI_IMG'] = bangumiImg['src'] if bangumiImg else ''
 
     """ BANGUMI_CONTENT """
     # id="subject_summary"的div标签里保存着番剧介绍内容
     bangumiContent = postSoup.find('div', {'id': 'subject_summary'})
-    if bangumiContent: # 存在番剧介绍
-        myMainPost['BANGUMI_CONTENT'] = bangumiContent.decode_contents()
-    else: # 不存在则为空
-        myMainPost['BANGUMI_CONTENT'] = ''
+    myMainPost['BANGUMI_CONTENT'] = bangumiContent.decode_contents() if bangumiContent else ''
+
+    # id="infobox"的ul里保存着番剧信息
+    bangumiInfoBox = postSoup.find('ul', {'id': 'infobox'})
+    infoBoxStr = str(bangumiInfoBox)
+    # 正则表达式匹配获取信息
+    """ BANGUMI_CHINESE """
+    match = re.search(r'<li><span class="tip">中文名: </span>(.*?)</li>', infoBoxStr)  
+    myMainPost['BANGUMI_CHINESE'] = match.group(1) if match else ''
+
+    """ BANGUMI_EPISODE """
+    match = re.search(r'<li><span class="tip">话数: </span>(.*?)</li>', infoBoxStr)  
+    myMainPost['BANGUMI_EPISODE'] = match.group(1) if match else ''
+
+    """ BANGUMI_DATE """
+    match = re.search(r'<li><span class="tip">放送开始: </span>(.*?)</li>', infoBoxStr)  
+    myMainPost['BANGUMI_DATE'] = match.group(1) if match else ''
+
+    """ BANGUMI_WEEKDAY """
+    match = re.search(r'<li><span class="tip">放送星期: </span>(.*?)</li>', infoBoxStr)  
+    myMainPost['BANGUMI_WEEKDAY'] = match.group(1) if match else ''
+
+    """ BANGUMI_SCORE """
+    # id="panelInterestWrapper"的div中的class="number"的span的内容是分数
+    numberSpan = postSoup.find('div', {'id': 'panelInterestWrapper'}).find('span', {'class': 'number'})
+    myMainPost['BANGUMI_SCORE'] = numberSpan.decode_contents() if numberSpan else ''
 
     """ myPostImgs """
     myMainPost['myPostImgs'] = []
