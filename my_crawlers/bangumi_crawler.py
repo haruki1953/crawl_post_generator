@@ -122,7 +122,8 @@ def get_mainpost_data(postSoup: BeautifulSoup, threadData):
     """ BANGUMI_IMG """
     # bangumiInfo里的img就是番剧图片
     bangumiImg = postSoup.find('div', {'id': 'bangumiInfo'}).find('img')
-    myMainPost['BANGUMI_IMG'] = bangumiImg['src'] if bangumiImg else ''
+    # 未找到番剧图片时赋值默认图片 
+    myMainPost['BANGUMI_IMG'] = bangumiImg['src'] if bangumiImg else '//bangumi.tv/img/no_icon_subject.png'
 
     """ BANGUMI_CONTENT """
     # id="subject_summary"的div标签里保存着番剧介绍内容

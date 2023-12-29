@@ -18,4 +18,4 @@ styleDict = {
 }
 
 # crawl_info.json 保存爬取信息的json文件的路径
-crawl_info_json = './crawl_info.json'
+crawl_info_json = './test/crawl_info.json'
