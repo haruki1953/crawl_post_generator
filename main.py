@@ -140,6 +140,10 @@ def main(crawlInfoList):
                 if threadData:
                     # 如果爬取成功，保存data为帖子数据，source为帖子来源
                     threadDataList.append({'data': threadData, 'source': urlInfo['source']})
+                    
+                    """ bangumi_list """
+                    # 调用 bangumi_list 添加数据
+                    """ bangumi_list END """
 
             # 调用html模板拼接函数，返回整个页面html字符串
             htmlStr = generate_html(threadDataList)
@@ -169,6 +173,11 @@ if __name__ == '__main__':
             crawlInfoList = json.load(f)
         # main函数开始执行
         main(crawlInfoList)
+
+        """ bangumi_list """
+        # 根据bash执行时的参数判断是否保存bangumi_list
+        # 调用 bangumi_list 保存数据
+        """ bangumi_list END """
 
     except FileNotFoundError:
         print("错误：文件 {} 未找到。".format(crawl_info_json))
