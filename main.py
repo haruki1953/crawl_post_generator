@@ -6,6 +6,7 @@ import json
 
 # 导入设置数据
 import setting
+import bangumi_list
 
 
 """ 模板拼接 """
@@ -119,7 +120,7 @@ def save_html(path, string):
 
 
 
-def main(crawlInfoList):
+def main(crawlInfoList, stopHtml=False):
     # 遍历爬取信息 pageInfo页面信息字典
     for pageInfo in crawlInfoList:
         # 创建空帖子数据列表，其中将保存帖子信息字典，data为帖子数据，source为帖子来源
@@ -143,7 +144,11 @@ def main(crawlInfoList):
                     
                     """ bangumi_list """
                     # 调用 bangumi_list 添加数据
+                    bangumi_list.push(threadData, pageInfo, urlInfo)
                     """ bangumi_list END """
+
+            if stopHtml: # 禁用html保存时跳过保存
+                continue
 
             # 调用html模板拼接函数，返回整个页面html字符串
             htmlStr = generate_html(threadDataList)
@@ -162,21 +167,37 @@ if __name__ == '__main__':
     # crawl_info_json为保存爬取信息的json文件的路径，默认为setting里设置的
     crawl_info_json = setting.crawl_info_json
 
-    # 也可以通过命令行传递crawl_info.json文件路径
+    # 是否启用bangumi-list保存数据
+    enableBangumiList = False
+    # 是否禁用html保存
+    stopHtml = False
+
     if len(sys.argv) > 1:
+        # 也可以通过命令行传递crawl_info.json文件路径
         crawl_info_json = sys.argv[1]
     
+    if len(sys.argv) > 2:
+        if sys.argv[2] == 'BL':
+            # 第二参数为'BL'时启用bangumi-list
+            enableBangumiList = True
+        elif sys.argv[2] == 'onlyBL':
+            # 第二参数为'onlyBL'时不保存html
+            enableBangumiList = True
+            stopHtml = True
+
     try:
         # 打开JSON文件，获取crawlInfoList
         with open(crawl_info_json, 'r', encoding='utf-8') as f:
             # 使用json.load()方法将文件中的JSON数据解析为列表
             crawlInfoList = json.load(f)
         # main函数开始执行
-        main(crawlInfoList)
+        main(crawlInfoList, stopHtml)
 
         """ bangumi_list """
         # 根据bash执行时的参数判断是否保存bangumi_list
-        # 调用 bangumi_list 保存数据
+        if enableBangumiList:
+            # 调用 bangumi_list 保存数据，参数为文件名
+            bangumi_list.save(os.path.basename(crawl_info_json))
         """ bangumi_list END """
 
     except FileNotFoundError:
