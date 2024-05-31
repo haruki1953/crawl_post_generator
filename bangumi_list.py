@@ -73,14 +73,14 @@ def push(data, pageInfo, urlInfo):
             "date": data['myMainPost']['BANGUMI_DATE'],
             "weekday": data['myMainPost']['BANGUMI_WEEKDAY'],
             "score": data['myMainPost']['BANGUMI_SCORE'],
-            "charsInfo": [{"img": img['BANGUMI_CHAR_IMG']} for img in data['myMainPost']['myPostImgs']],
-            "comments": [
-                {
-                    "img": post['POST_USER_IMG'],
-                    "name": post['POST_USER_NAME'],
-                    "content": post['POST_CONTENT_P']
-                } for post in data['myRePosts']
-            ]
+            # "charsInfo": [{"img": img['BANGUMI_CHAR_IMG']} for img in data['myMainPost']['myPostImgs']],
+            # "comments": [
+            #     {
+            #         "img": post['POST_USER_IMG'],
+            #         "name": post['POST_USER_NAME'],
+            #         "content": post['POST_CONTENT_P']
+            #     } for post in data['myRePosts']
+            # ]
         }
         # 添加数据
         bangumiList.append(bangumiData)
