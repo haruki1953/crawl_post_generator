@@ -1,0 +1,59 @@
+<!-- 通用css -->
+<style type="text/css">
+	.my_p {
+		margin: 10px !important;
+		color: black !important;
+	}
+	.my_thread {
+		background-color: #f7f8fa;
+		border-radius: 10px;
+		margin: 10px 0;
+		padding: 10px;
+	}
+	.my_nameBox {
+		display: flex;
+		align-items: center;
+	}
+	.my_name {
+		margin: 10px;
+	}
+	.my_avatar {
+		width: 44px;
+		border-radius: 50%;
+	}
+	.my_a {
+		/* text-decoration: none !important; */
+		color: black !important;
+	}
+	.my_pic {
+		/* width: 192px; */
+		height: 108px;
+		object-fit: cover;
+		border-radius: 10px;
+		margin: 3px;
+	}
+	.my_button {
+		border-radius: 999em;
+		padding: 0 10px;
+	}
+	.my_comments {
+		padding-left: 30px;
+	}
+	.my_source {
+		display: flex;
+		justify-content: center;
+		margin: 10px;
+	}
+	.my_post {
+		margin: 24px 0;
+	}
+</style>
+<thread-list>
+	{% for thread in threadDataList %}
+		{% if thread.source == 'bangumi' %}
+			{% include 'thread-bangumi.html' %}
+		{% else %}
+			{% include 'thread-default.html' %}
+		{% endif %}
+	{% endfor %}
+</thread-list>

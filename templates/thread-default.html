@@ -1,0 +1,62 @@
+<div class="my_thread">
+  <div class="my_source">
+    <a href="{{ thread.data.THREAD_URL }}" target="_blank" class="my_nameBox my_a">
+      <img src="{{ thread.data.SOURCE_IMG }}" height="44px" title="{{ thread.data.SOURCE_NAME }}" />
+    </a>
+  </div>
+  <!-- MainPost -->
+  <div class="my_post">
+    <div>
+      <a href="{{ thread.data.MainPost.POST_USER_URL }}" target="_blank" class="my_nameBox my_a">
+        <img src="{{ thread.data.MainPost.POST_USER_IMG }}" class="my_avatar"
+          title="{{ thread.data.MainPost.POST_USER_NAME }}">
+        <span class="my_name">{{ thread.data.MainPost.POST_USER_NAME }}</span>
+      </a>
+    </div>
+    <div class="my_content">
+      <div class="my_p">
+        {{ thread.data.MainPost.POST_CONTENT_P }}
+      </div>
+      <div>
+        {% for PostImg in thread.data.MainPost.PostImgs %}
+        <img src="{{ PostImg.POST_CONTENT_IMG }}" class="my_pic">
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+  <button id="{{ thread.data.TOGGLE_ID }}_toggleButton" class="my_button">
+    回帖 显示/隐藏
+  </button>
+  <div id="{{ thread.data.TOGGLE_ID }}_targetElement" class="my_comments" style="display: none">
+    <!-- RePosts -->
+    {% for RePost in thread.data.RePosts %}
+    <div class="my_post">
+      <div>
+        <a href="{{ RePost.POST_USER_URL }}" target="_blank" class="my_nameBox my_a">
+          <img src="{{ RePost.POST_USER_IMG }}" class="my_avatar" title="{{ RePost.POST_USER_NAME }}">
+          <span class="my_name">{{ RePost.POST_USER_NAME }}</span>
+        </a>
+      </div>
+      <div class="my_content">
+        <div class="my_p">
+          {{ RePost.POST_CONTENT_P }}
+        </div>
+        <div>
+          {% for PostImg in RePost.PostImgs %}
+          <img src="{{ PostImg.POST_CONTENT_IMG }}" class="my_pic">
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+	<script>
+		const toggleButton{{ thread.data.TOGGLE_ID }} = document.getElementById("{{ thread.data.TOGGLE_ID }}_toggleButton")
+    const targetElement{{ thread.data.TOGGLE_ID }} = document.getElementById("{{ thread.data.TOGGLE_ID }}_targetElement")
+    toggleButton{{ thread.data.TOGGLE_ID }}.addEventListener("click", function () {
+      targetElement{{ thread.data.TOGGLE_ID }}.style.display =
+      targetElement{{ thread.data.TOGGLE_ID }}.style.display ===
+        "none" ? "block" : "none";
+    });
+  </script>
+</div>

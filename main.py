@@ -8,79 +8,24 @@ import json
 import setting
 import bangumi_list
 
+# 模板引擎
+from jinja2 import Environment, FileSystemLoader
 
-""" 模板拼接 """
-# 自定义替换函数，用于将模板字符串中的占位符替换为数据字典中对应的值
-def custom_replace(templateStr, data):
-    for key, value in data.items():
-        templateStr = templateStr.replace('{' + key + '}', str(value))
-    return templateStr
 
-# 格式化图片列表
-def format_images(img_list, template):
-    images = ''
-    for img in img_list:
-        # 使用自定义替换函数格式化每个图片，并添加到结果字符串中
-        images += custom_replace(template.imgOfHtml, img)
-    return images
-
-# 格式化主帖
-def format_mainpost(post, template):
-    # 生成图片内容
-    post['myPostImgs'] = format_images(post['myPostImgs'], template)
-    # 使用自定义替换函数格式化帖子数据，并将格式化的图片列表插入到结果字符串中
-    post_html = custom_replace(template.mainpostOfHtml, post)
-    return post_html
-
-# 格式化回帖 
-def format_repost(post, template):
-    # 生成图片内容
-    post['myPostImgs'] = format_images(post['myPostImgs'], template)
-    # 使用自定义替换函数格式化帖子数据，并将格式化的图片列表插入到结果字符串中
-    post_html = custom_replace(template.repostOfHtml, post)
-    return post_html
-
-# 格式化回帖列表
-def format_reposts(post_list, template):
-    posts = ''
-    for post in post_list:
-        # 使用format_post函数格式化每个帖子，并添加到结果字符串中
-        posts += format_repost(post, template)
-    return posts
-
-# 格式化主题帖
-def format_thread(threadData, template):
-    # 生成主帖和回帖的内容
-    threadData['myMainPost'] = format_mainpost(threadData['myMainPost'], template)
-    threadData['myRePosts'] = format_reposts(threadData['myRePosts'], template)
-    # 再使用自定义替换函数格式化主题帖数据
-    thread_html = custom_replace(template.threadOfHtml, threadData)
-    return thread_html
-
-# 生成HTML
 def generate_html(threadDataList):
-    # 保存帖子
-    threads = ''
-    # 保存自定义css
-    customCss = ''
-    # 记录已保存的自定义css，避免重复保存
-    savedCss = []
+    # 生成HTML
+    # threadDataList = [{'data': '帖子数据', 'source': '帖子来源'}, ...]
 
-    for threadData in threadDataList:
-        # 使用format_thread函数格式化每个主题帖，并添加到结果字符串中
-        threads += format_thread(threadData['data'], setting.styleDict[threadData['source']])
-        # 如果对应css未保存，则保存
-        if threadData['source'] not in savedCss:
-            savedCss.append(threadData['source'])
-            customCss += setting.styleDict[threadData['source']].customCssOfHtml
-    # 生成最终的HTML
-    html = custom_replace(setting.styleDict['default'].allOfHtml, 
-                          {'myThreads': threads, 'myCustomCss':customCss})
-    # 最后删除空行
-    html = re.sub(r'\n\s*\n', '\n', html)
+    # 设置模板文件夹
+    file_loader = FileSystemLoader('templates')
+    env = Environment(loader=file_loader)
+
+    # 加载主模板
+    template = env.get_template('main.html')
+
+    # 渲染模板并传入数据
+    html = template.render(threadDataList=threadDataList)
     return html
-""" 模板拼接 END """
-
 
 
 def save_html(path, string):
@@ -119,20 +64,29 @@ def save_html(path, string):
     print("文件 {} 已更新".format(path))
 
 
-
 def main(crawlInfoList, stopHtml=False):
     # 遍历爬取信息 pageInfo页面信息字典
     for pageInfo in crawlInfoList:
+        """
+        pageInfo: {
+            'saveFile': 'html保存至的文件', 
+            'urlList': [{
+                "source": "来源 bangumi、cycg",
+                "url": "链接https://bangumi.tv/subject/467803"
+            }, ...]
+        }
+        """
         # 创建空帖子数据列表，其中将保存帖子信息字典，data为帖子数据，source为帖子来源
         # threadDataList = [{'data': '帖子数据', 'source': '帖子来源'}, ...]
-        threadDataList = [] 
-        
+        threadDataList = []
+
         try:
-            # 遍历页面信息字典的urlList urlInfo
+            # 遍历页面信息字典的urlList
             for urlInfo in pageInfo['urlList']:
                 # 根据urlInfo中的soure调用爬取策略，传入url，得到其返回的帖子数据
                 try:
-                    threadData = setting.crawlersDict[urlInfo['source']].main(urlInfo['url'])
+                    threadData = setting.crawlersDict[urlInfo['source']].main(
+                        urlInfo['url'])
                 except Exception as e:
                     print("urlInfo:", urlInfo)
                     print("发生了一个错误: {}".format(e))
@@ -140,14 +94,15 @@ def main(crawlInfoList, stopHtml=False):
                     threadData = False
                 if threadData:
                     # 如果爬取成功，保存data为帖子数据，source为帖子来源
-                    threadDataList.append({'data': threadData, 'source': urlInfo['source']})
-                    
+                    threadDataList.append(
+                        {'data': threadData, 'source': urlInfo['source']})
+
                     """ bangumi_list """
                     # 调用 bangumi_list 添加数据
                     bangumi_list.push(threadData, pageInfo, urlInfo)
                     """ bangumi_list END """
 
-            if stopHtml: # 禁用html保存时跳过保存
+            if stopHtml:  # 禁用html保存时跳过保存
                 continue
 
             # 调用html模板拼接函数，返回整个页面html字符串
@@ -159,7 +114,7 @@ def main(crawlInfoList, stopHtml=False):
         except Exception as e:
             print("pageInfo: ", pageInfo)
             print("发生了一个错误: {}".format(e))
-            
+
 
 if __name__ == '__main__':
     import sys
@@ -175,7 +130,7 @@ if __name__ == '__main__':
     if len(sys.argv) > 1:
         # 也可以通过命令行传递crawl_info.json文件路径
         crawl_info_json = sys.argv[1]
-    
+
     if len(sys.argv) > 2:
         if sys.argv[2] == 'BL':
             # 第二参数为'BL'时启用bangumi-list
@@ -207,5 +162,3 @@ if __name__ == '__main__':
     except Exception as e:
         print("crawl_info_json: ", crawl_info_json)
         print("发生了一个错误: {}".format(e))
-
-    

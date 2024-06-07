@@ -443,7 +443,8 @@
         "urlList": [
             {
                 "source": "bangumi",
-                "url": "https://bangumi.tv/subject/436745"
+                "url": "https://bangumi.tv/subject/436745",
+                "alistPath": "/Bangumi/BUCCHIGIRI？!"
             }
         ]
     },

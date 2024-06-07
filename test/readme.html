@@ -1,320 +1,426 @@
-<my-html>
-<!-- 通用css -->
+<my-html><!-- 通用css -->
 <style type="text/css">
-    .my_p {
-        margin: 10px !important;
-        color: black !important;
-    }
-    .my_thread {
-        background-color: #f7f8fa;
-        border-radius: 10px;
-        margin: 10px 0;
-        padding: 10px;
-    }
-    .my_nameBox {
-        display: flex;
-        align-items: center;
-    }
-    .my_name {
-        margin: 10px;
-    }
-    .my_avatar {
-        width: 44px;
-        border-radius: 50%;
-    }
-    .my_a {
-        /* text-decoration: none !important; */
-        color: black !important;
-    }
-    .my_pic {
-        /* width: 192px; */
-        height: 108px;
-        object-fit: cover;
-        border-radius: 10px;
-        margin: 3px;
-    }
-    .my_button {
-        border-radius: 999em;
-        padding: 0 10px;
-    }
-    .my_comments {
-        padding-left: 30px;
-    }
-    .my_source {
-        display: flex;
-        justify-content: center;
-        margin: 10px;
-    }
-    .my_post {
-        margin: 24px 0;
-    }
+	.my_p {
+		margin: 10px !important;
+		color: black !important;
+	}
+	.my_thread {
+		background-color: #f7f8fa;
+		border-radius: 10px;
+		margin: 10px 0;
+		padding: 10px;
+	}
+	.my_nameBox {
+		display: flex;
+		align-items: center;
+	}
+	.my_name {
+		margin: 10px;
+	}
+	.my_avatar {
+		width: 44px;
+		border-radius: 50%;
+	}
+	.my_a {
+		/* text-decoration: none !important; */
+		color: black !important;
+	}
+	.my_pic {
+		/* width: 192px; */
+		height: 108px;
+		object-fit: cover;
+		border-radius: 10px;
+		margin: 3px;
+	}
+	.my_button {
+		border-radius: 999em;
+		padding: 0 10px;
+	}
+	.my_comments {
+		padding-left: 30px;
+	}
+	.my_source {
+		display: flex;
+		justify-content: center;
+		margin: 10px;
+	}
+	.my_post {
+		margin: 24px 0;
+	}
 </style>
-<!-- 自定义css -->
-<!-- bangumi自定义css --> 
-<style type="text/css">
-    .bangumi_container {
-        display: flex;
-        flex-wrap: wrap;
-    }
-    .bangumi_imgbox {
-        flex: 1;
-        padding: 0 10px;
-    }
-    .bangumi_content {
-        flex: 3;
-        padding: 0 10px;
-    }
-    .bangumi_img {
-        display: block !important;
-        margin: 0 auto;
-        width: 200px;
-        border-radius: 10px;
-    }
-    .bangumi_info {
-        margin: 0 auto !important;
-        margin-top: 10px !important;
-        width: 200px;
-        list-style-type: none;
-        padding-inline-start: 0px !important;
-        line-height: 24px !important;
-    }
-    .bangumi_tip {
-        color: #666;
-    }
-    .bangumi_char_img {
-        width: 48px;
-        /* height: 48px; */
-        object-fit: cover;
-        border-radius: 10px;
-        margin: 3px
-    }
-    @media (max-width: 600px) {
-        .bangumi_info {
-            flex-basis: 100%;
-        }
-        .bangumi_imgbox {
-            flex-basis: 100%;
-        }
-    }
-</style>
-<my-threads>
-<div class="my_thread">
-    <div class="my_source">
-        <!-- 来源 -->
-        <a href="https://bangumi.tv/subject/467803" target="_blank" class="my_nameBox my_a">
-            <img src="https://bangumi.tv/img/rc3/logo_2x.png" height="44px" title="bangumi">
-            <!-- <span class="my_name">bangumi</span> -->
-        </a>
-    </div>
-<div class="my_post bangumi_container">
-    <div class="bangumi_imgbox">
-        <!-- 番剧图片 -->
-        <img src="//lain.bgm.tv/r/400/pic/cover/l/ec/d5/467803_78DQp.jpg" class="bangumi_img" tittle="カミエラビ シーズン2">
-        <!-- 番剧信息 -->
-        <ul class="bangumi_info">
-            <li><span class="bangumi_tip">中文名: </span>神选 第二季</li>
-            <li><span class="bangumi_tip">话数: </span>*</li>
-            <li><span class="bangumi_tip">放送开始: </span>2024年10月</li>
-            <li><span class="bangumi_tip">放送星期: </span></li>
-            <li><span class="bangumi_tip">评分: </span>0.0</li>
-        </ul>
-    </div>
-    <div class="bangumi_content">
-        <!-- 番剧标题链接  -->
-        <a href="https://bangumi.tv/subject/467803" target="_blank" class="my_nameBox my_a">
-            <h2>カミエラビ シーズン2</h2>
-        </a>
-        <!-- 番剧介绍内容 -->
-        <div class="my_content">
-            <div class="my_p">
-                「神様、世界は今日も健やかに狂っています。」<br/>
+<thread-list>
+	
+		
+			<div class="my_thread">
+	<style type="text/css">
+		.bangumi_container {
+			display: flex;
+			flex-wrap: wrap;
+		}
+
+		.bangumi_imgbox {
+			flex: 1;
+			padding: 0 10px;
+		}
+
+		.bangumi_content {
+			flex: 3;
+			padding: 0 10px;
+		}
+
+		.bangumi_img {
+			display: block !important;
+			margin: 0 auto;
+			width: 200px;
+			border-radius: 10px;
+		}
+
+		.bangumi_info {
+			margin: 0 auto !important;
+			margin-top: 10px !important;
+			width: 200px;
+			list-style-type: none;
+			padding-inline-start: 0px !important;
+			line-height: 24px !important;
+		}
+
+		.bangumi_tip {
+			color: #666;
+		}
+
+		.bangumi_char_img {
+			width: 48px;
+			/* height: 48px; */
+			object-fit: cover;
+			border-radius: 10px;
+			margin: 3px
+		}
+
+		@media (max-width: 600px) {
+			.bangumi_info {
+				flex-basis: 100%;
+			}
+
+			.bangumi_imgbox {
+				flex-basis: 100%;
+			}
+		}
+	</style>
+	<div class="my_source">
+		<!-- 来源 -->
+		<a href="https://bangumi.tv/subject/431767" target="_blank" class="my_nameBox my_a">
+			<img src="https://bangumi.tv/img/rc3/logo_2x.png" height="44px" title="bangumi">
+		</a>
+	</div>
+	<!-- MainPost -->
+	<div class="my_post bangumi_container">
+		<div class="bangumi_imgbox">
+			<!-- 番剧图片 -->
+			<img src="//lain.bgm.tv/r/400/pic/cover/l/75/c1/431767_bX7FZ.jpg" class="bangumi_img"
+				title="ガールズバンドクライ">
+			<!-- 番剧信息 -->
+			<ul class="bangumi_info">
+				<li><span class="bangumi_tip">中文名: </span>GIRLS BAND CRY</li>
+				<li><span class="bangumi_tip">话数: </span>13</li>
+				<li><span class="bangumi_tip">放送开始: </span>2024年4月5日</li>
+				<li><span class="bangumi_tip">放送星期: </span>星期五</li>
+				<li><span class="bangumi_tip">评分: </span>8.1</li>
+			</ul>
+		</div>
+		<div class="bangumi_content">
+			<!-- 番剧标题链接  -->
+			<a href="https://bangumi.tv/subject/431767" target="_blank" class="my_nameBox my_a">
+				<h2>ガールズバンドクライ</h2>
+			</a>
+			<!-- 番剧介绍内容 -->
+			<div class="my_content">
+				<div class="my_p">
+					「怒りも喜びも哀しさも全部ぶちこめ。」<br/>
 <br/>
-都内私立高校に通う高校一年生のゴローには、「望み」や「夢」もなければ「野望」もない。<br/>
-世界は彼にとって「無関心」なものであり、同じ学校の同級生であるホノカに淡い憧れを抱きながら、親友のアキツと変わり映えのしない退屈な日常を過ごしていた。<br/>
+高校2年、学校を中退して単身東京で大学を目指すことになった主人公。<br/>
+仲間に裏切られてどうしていいか分からない少女。<br/>
+両親に捨てられて、大都会で一人バイトで食いつないでいる女の子。<br/>
 <br/>
-そんなある日、ゴローのスマートフォンに奇妙な通知が届く。<br/>
-「あなたは選ばれました。願いを吹き込んでください」<br/>
+この世界はいつも私たちを裏切るけど。<br/>
+何一つ思い通りにいかないけど。<br/>
+でも、私たちは何かを好きでいたいから。<br/>
+自分の居場所がどこかにあると信じているから。<br/>
 <br/>
-悪質なスパムだと思ったゴローは「憧れのホノカとエッチなことがしたい」とつぶやく。<br/>
-すると翌日ホノカに誘われ、人気のないゲーセンでズボンを降ろされて…。<br/>
-<br/>
-「大願成就、おめでとうございや～す！」<br/>
-そこに突如現れた不思議な少女ラル。<br/>
-一連の出来事に混乱するゴローに、残酷な運命を告げる。<br/>
-ゴローは「大いなる意志」に選ばれ、願いを叶えるため「神様」の座をかけて、他のカミサマ候補たちと最後の一人になるまで殺しあうのだと。<br/>
-<br/>
-与えられた能力は「愚者の聖典」。<br/>
-自分自身に降りかかる「不幸」を代償に、世界の因果を捻じ曲げ、この世の理を自在に操る力。<br/>
-<br/>
-真っ先にゴローを殺そうと現れた最初のカミサマ候補は、あろうことか憧れのホノカだった。<br/>
-容赦なく襲い掛かってくるホノカに対して、ゴローがとった選択とは―？<br/>
-<br/>
-かくして、秘密を抱えたカミサマ候補達によるフェティッシュ・バトルロワイヤルが開幕する――！
-            </div>
-            <div>
-                <!-- 角色图片 -->
-            </div>
-        </div>
-    </div>
+だから、歌う。
+				</div>
+				<div>
+					<!-- 角色图片 -->
+					<!-- PostImgs -->
+					
+					<img src="//lain.bgm.tv/pic/crt/g/63/80/130664_crt_GdY10.jpg?r=1712842672" class="bangumi_char_img">
+					
+					<img src="//lain.bgm.tv/pic/crt/g/a2/54/130666_crt_4wa07.jpg?r=1685333912" class="bangumi_char_img">
+					
+					<img src="//lain.bgm.tv/pic/crt/g/6f/ea/130665_crt_CjaUT.jpg?r=1685333734" class="bangumi_char_img">
+					
+					<img src="//lain.bgm.tv/pic/crt/g/7c/4c/130667_crt_d2jvz.jpg?r=1685334109" class="bangumi_char_img">
+					
+					<img src="//lain.bgm.tv/pic/crt/g/ca/26/130668_crt_G7Auy.jpg?r=1716195071" class="bangumi_char_img">
+					
+					<img src="//lain.bgm.tv/pic/crt/g/75/53/156738_crt_VeM0m.jpg" class="bangumi_char_img">
+					
+					<img src="//lain.bgm.tv/pic/crt/g/88/82/156739_crt_Hjn9J.jpg" class="bangumi_char_img">
+					
+					<img src="//lain.bgm.tv/pic/crt/g/fd/41/156740_crt_vZgMz.jpg" class="bangumi_char_img">
+					
+					<img src="//lain.bgm.tv/pic/crt/g/6a/4e/156741_crt_5YMS7.jpg" class="bangumi_char_img">
+					
+				</div>
+			</div>
+		</div>
+	</div>
+	<button id="68d7337c4e5523530eb08f84012f21a73c4a5814635de1c092af5132eb72f387_toggleButton" class="my_button">吐槽 显示/隐藏</button>
+	<div id="68d7337c4e5523530eb08f84012f21a73c4a5814635de1c092af5132eb72f387_targetElement" class="my_comments" style="display: none;">
+		<!-- RePosts -->
+		
+		<div class="my_post">
+			<div>
+				<a href="https://bangumi.tv/user/konoqmyda" target="_blank" class="my_nameBox my_a">
+					<img src="//lain.bgm.tv/pic/user/l/000/65/48/654805.jpg?r=1707675980&amp;hd=1" class="my_avatar" title="konoqmyda">
+					<span class="my_name">konoqmyda</span>
+				</a>
+			</div>
+			<div class="my_content">
+				<div class="my_p">
+					东映捡到宝了//ep4 8
+				</div>
+			</div>
+		</div>
+		
+		<div class="my_post">
+			<div>
+				<a href="https://bangumi.tv/user/850314" target="_blank" class="my_nameBox my_a">
+					<img src="//lain.bgm.tv/pic/user/l/icon.jpg" class="my_avatar" title="白筑慕">
+					<span class="my_name">白筑慕</span>
+				</a>
+			</div>
+			<div class="my_content">
+				<div class="my_p">
+					唯一缺陷：看一集就要等7个世纪
+				</div>
+			</div>
+		</div>
+		
+		<div class="my_post">
+			<div>
+				<a href="https://bangumi.tv/user/739475" target="_blank" class="my_nameBox my_a">
+					<img src="//lain.bgm.tv/pic/user/l/000/73/94/739475.jpg?r=1701510250&amp;hd=1" class="my_avatar" title="我好累啊啊啊啊">
+					<span class="my_name">我好累啊啊啊啊</span>
+				</a>
+			</div>
+			<div class="my_content">
+				<div class="my_p">
+					放眼24年也是顶级
+				</div>
+			</div>
+		</div>
+		
+		<div class="my_post">
+			<div>
+				<a href="https://bangumi.tv/user/555933" target="_blank" class="my_nameBox my_a">
+					<img src="//lain.bgm.tv/pic/user/l/000/55/59/555933.jpg?r=1716568378&amp;hd=1" class="my_avatar" title="····">
+					<span class="my_name">····</span>
+				</a>
+			</div>
+			<div class="my_content">
+				<div class="my_p">
+					喜欢
+				</div>
+			</div>
+		</div>
+		
+		<div class="my_post">
+			<div>
+				<a href="https://bangumi.tv/user/525188" target="_blank" class="my_nameBox my_a">
+					<img src="//lain.bgm.tv/pic/user/l/icon.jpg" class="my_avatar" title="无定形体">
+					<span class="my_name">无定形体</span>
+				</a>
+			</div>
+			<div class="my_content">
+				<div class="my_p">
+					我带你们吹《Girls Band Cry》：伟大的花田正在创造不朽的篇章
+				</div>
+			</div>
+		</div>
+		
+		<div class="my_post">
+			<div>
+				<a href="https://bangumi.tv/user/857328" target="_blank" class="my_nameBox my_a">
+					<img src="//lain.bgm.tv/pic/user/l/000/85/73/857328.jpg?r=1713180759&amp;hd=1" class="my_avatar" title="西宫始">
+					<span class="my_name">西宫始</span>
+				</a>
+			</div>
+			<div class="my_content">
+				<div class="my_p">
+					相信
+				</div>
+			</div>
+		</div>
+		
+		<div class="my_post">
+			<div>
+				<a href="https://bangumi.tv/user/871074" target="_blank" class="my_nameBox my_a">
+					<img src="//lain.bgm.tv/pic/user/l/000/87/10/871074.jpg?r=1713609098&amp;hd=1" class="my_avatar" title="心兮可念">
+					<span class="my_name">心兮可念</span>
+				</a>
+			</div>
+			<div class="my_content">
+				<div class="my_p">
+					喜欢这种动画，以及有趣的表现方式
+				</div>
+			</div>
+		</div>
+		
+		<div class="my_post">
+			<div>
+				<a href="https://bangumi.tv/user/743216" target="_blank" class="my_nameBox my_a">
+					<img src="//lain.bgm.tv/pic/user/l/icon.jpg" class="my_avatar" title="天云霄">
+					<span class="my_name">天云霄</span>
+				</a>
+			</div>
+			<div class="my_content">
+				<div class="my_p">
+					这3D我可太喜欢了，除了镜头有些稀碎，但脚本的强劲及配乐、演出完美掩盖了这一问题。开香槟！
+				</div>
+			</div>
+		</div>
+		
+		<div class="my_post">
+			<div>
+				<a href="https://bangumi.tv/user/546217" target="_blank" class="my_nameBox my_a">
+					<img src="//lain.bgm.tv/pic/user/l/000/54/62/546217.jpg?r=1717723374&amp;hd=1" class="my_avatar" title="羁绊比翼鸟">
+					<span class="my_name">羁绊比翼鸟</span>
+				</a>
+			</div>
+			<div class="my_content">
+				<div class="my_p">
+					灵动，细腻，期待后面会有超神表现——你也配唱空之箱？
+				</div>
+			</div>
+		</div>
+		
+		<div class="my_post">
+			<div>
+				<a href="https://bangumi.tv/user/826949" target="_blank" class="my_nameBox my_a">
+					<img src="//lain.bgm.tv/pic/user/l/icon.jpg" class="my_avatar" title="冰魄乐乐">
+					<span class="my_name">冰魄乐乐</span>
+				</a>
+			</div>
+			<div class="my_content">
+				<div class="my_p">
+					预定神番
+				</div>
+			</div>
+		</div>
+		
+	</div>
+	<script>
+		const toggleButton68d7337c4e5523530eb08f84012f21a73c4a5814635de1c092af5132eb72f387 = document.getElementById("68d7337c4e5523530eb08f84012f21a73c4a5814635de1c092af5132eb72f387_toggleButton")
+    const targetElement68d7337c4e5523530eb08f84012f21a73c4a5814635de1c092af5132eb72f387 = document.getElementById("68d7337c4e5523530eb08f84012f21a73c4a5814635de1c092af5132eb72f387_targetElement")
+    toggleButton68d7337c4e5523530eb08f84012f21a73c4a5814635de1c092af5132eb72f387.addEventListener("click", function () {
+      targetElement68d7337c4e5523530eb08f84012f21a73c4a5814635de1c092af5132eb72f387.style.display =
+      targetElement68d7337c4e5523530eb08f84012f21a73c4a5814635de1c092af5132eb72f387.style.display ===
+        "none" ? "block" : "none";
+    });
+  </script>
 </div>
-    <button id="0c71f16adf057b6bbf82e72f1bff22e459f46698b2bb669c43006faebe9c8c5b_toggleButton" class="my_button">吐槽 显示/隐藏</button>
-    <div id="0c71f16adf057b6bbf82e72f1bff22e459f46698b2bb669c43006faebe9c8c5b_targetElement" class="my_comments" style="display: none;">
-<div class="my_post">
+		
+	
+		
+			<div class="my_thread">
+  <div class="my_source">
+    <a href="https://www.cycg.xyz/thread-624-1-1.html" target="_blank" class="my_nameBox my_a">
+      <img src="https://www.cycg.xyz/template/acgi_c1/images/logo.png" height="44px" title="Sperteの次元茶馆" />
+    </a>
+  </div>
+  <!-- MainPost -->
+  <div class="my_post">
     <div>
-        <a href="https://bangumi.tv/user/lvyan" target="_blank" class="my_nameBox my_a">
-            <img src="//lain.bgm.tv/pic/user/l/000/82/13/821361.jpg?r=1710131663&amp;hd=1" class="my_avatar" tittle="吕岩" >
-            <span class="my_name">吕岩</span>
-        </a>
+      <a href="https://www.cycg.xyz/thread-624-1-1.html#post_19890" target="_blank" class="my_nameBox my_a">
+        <img src="https://www.cycg.xyz/uc_server/avatar.php?uid=2514&size=middle" class="my_avatar"
+          title="黄小金">
+        <span class="my_name">黄小金</span>
+      </a>
     </div>
     <div class="my_content">
-        <div class="my_p">
-            好急
-        </div>
-        <div>
-        </div>
+      <div class="my_p">
+        【[TV2 AMV] 【邦邦要火】It's MyGO倾情热唱前任金曲：爱情买卖】 <a href="https://www.bilibili.com/video/BV1Lx4y1X7VH/?share_source=copy_web&amp;vd_source=8a6ef4b0a85ed891b6a09f4e2f1f79c8">https://www.bilibili.com/video/B ... 891b6a09f4e2f1f79c8</a><br/>我真的看一次笑一次<br/>↓次元图书馆都能看番了，真好<img src="https://www.cycg.xyz/static/image/smiley/Tieba/11.png"/><br/><a href="https://pan.cycg.xyz/Animation/BanG%20Dream!%20It%27s%20MyGO!!!!!/Season%201">https://pan.cycg.xyz/Animation/B ... yGO!!!!!/Season%201</a>
+      </div>
+      <div>
+        
+        <img src="https://www.cycg.xyz/data/attachment/forum/202308/03/111756daaqlszv318am2z5.png.thumb.jpg" class="my_pic">
+        
+        <img src="https://www.cycg.xyz/data/attachment/forum/202308/03/111340dj9bca2mejaowjem.jpg.thumb.jpg" class="my_pic">
+        
+      </div>
     </div>
-</div>
-<div class="my_post">
-    <div>
-        <a href="https://bangumi.tv/user/436383" target="_blank" class="my_nameBox my_a">
-            <img src="//lain.bgm.tv/pic/user/l/000/43/63/436383.jpg?r=1536540462" class="my_avatar" tittle="Bscan" >
-            <span class="my_name">Bscan</span>
+  </div>
+  <button id="e1a4a31e449bca053426d385574157ed18ce3d817ee373a4c14e8c6fbb5043bd_toggleButton" class="my_button">
+    回帖 显示/隐藏
+  </button>
+  <div id="e1a4a31e449bca053426d385574157ed18ce3d817ee373a4c14e8c6fbb5043bd_targetElement" class="my_comments" style="display: none">
+    <!-- RePosts -->
+    
+    <div class="my_post">
+      <div>
+        <a href="https://www.cycg.xyz/thread-624-1-1.html#post_19911" target="_blank" class="my_nameBox my_a">
+          <img src="https://www.cycg.xyz/uc_server/avatar.php?uid=2514&size=middle" class="my_avatar" title="黄小金">
+          <span class="my_name">黄小金</span>
         </a>
-    </div>
-    <div class="my_content">
+      </div>
+      <div class="my_content">
         <div class="my_p">
-            真的急死人
+          求求你再让我看半集吧
         </div>
         <div>
+          
+          <img src="https://www.cycg.xyz/data/attachment/forum/202308/04/071853vzqux6693xhqegz6.png.thumb.jpg" class="my_pic">
+          
         </div>
+      </div>
     </div>
-</div>
-<div class="my_post">
-    <div>
-        <a href="https://bangumi.tv/user/418329" target="_blank" class="my_nameBox my_a">
-            <img src="//lain.bgm.tv/pic/user/l/icon.jpg" class="my_avatar" tittle="vier_Oswald" >
-            <span class="my_name">vier_Oswald</span>
+    
+    <div class="my_post">
+      <div>
+        <a href="https://www.cycg.xyz/thread-624-1-1.html#post_19918" target="_blank" class="my_nameBox my_a">
+          <img src="https://www.cycg.xyz/uc_server/avatar.php?uid=2514&size=middle" class="my_avatar" title="黄小金">
+          <span class="my_name">黄小金</span>
         </a>
-    </div>
-    <div class="my_content">
+      </div>
+      <div class="my_content">
         <div class="my_p">
-            好急好急，怎么还要等到7月
+          
         </div>
         <div>
+          
+          <img src="https://www.cycg.xyz/data/attachment/forum/202308/04/095220yksiyswu838qyyee.png.thumb.jpg" class="my_pic">
+          
+          <img src="https://www.cycg.xyz/data/attachment/forum/202308/04/095221iwi2mmmj3wi611gi.png.thumb.jpg" class="my_pic">
+          
+          <img src="https://www.cycg.xyz/data/attachment/forum/202308/04/095224p7dgsy7thm5jdaa5.jpg.thumb.jpg" class="my_pic">
+          
+          <img src="https://www.cycg.xyz/data/attachment/forum/202308/04/095223jw8sbw6jd6wdjow5.png.thumb.jpg" class="my_pic">
+          
         </div>
+      </div>
     </div>
+    
+  </div>
+	<script>
+		const toggleButtone1a4a31e449bca053426d385574157ed18ce3d817ee373a4c14e8c6fbb5043bd = document.getElementById("e1a4a31e449bca053426d385574157ed18ce3d817ee373a4c14e8c6fbb5043bd_toggleButton")
+    const targetElemente1a4a31e449bca053426d385574157ed18ce3d817ee373a4c14e8c6fbb5043bd = document.getElementById("e1a4a31e449bca053426d385574157ed18ce3d817ee373a4c14e8c6fbb5043bd_targetElement")
+    toggleButtone1a4a31e449bca053426d385574157ed18ce3d817ee373a4c14e8c6fbb5043bd.addEventListener("click", function () {
+      targetElemente1a4a31e449bca053426d385574157ed18ce3d817ee373a4c14e8c6fbb5043bd.style.display =
+      targetElemente1a4a31e449bca053426d385574157ed18ce3d817ee373a4c14e8c6fbb5043bd.style.display ===
+        "none" ? "block" : "none";
+    });
+  </script>
 </div>
-<div class="my_post">
-    <div>
-        <a href="https://bangumi.tv/user/779195" target="_blank" class="my_nameBox my_a">
-            <img src="//lain.bgm.tv/pic/user/l/000/77/91/779195.jpg?r=1695937863&amp;hd=1" class="my_avatar" tittle="景仁" >
-            <span class="my_name">景仁</span>
-        </a>
-    </div>
-    <div class="my_content">
-        <div class="my_p">
-            急急急
-        </div>
-        <div>
-        </div>
-    </div>
-</div>
-<div class="my_post">
-    <div>
-        <a href="https://bangumi.tv/user/ba7nice" target="_blank" class="my_nameBox my_a">
-            <img src="//lain.bgm.tv/pic/user/l/000/45/04/450436.jpg?r=1659168036" class="my_avatar" tittle="Ba7nice" >
-            <span class="my_name">Ba7nice</span>
-        </a>
-    </div>
-    <div class="my_content">
-        <div class="my_p">
-            急急急
-        </div>
-        <div>
-        </div>
-    </div>
-</div>
-<div class="my_post">
-    <div>
-        <a href="https://bangumi.tv/user/714819" target="_blank" class="my_nameBox my_a">
-            <img src="//lain.bgm.tv/pic/user/l/000/71/48/714819.jpg?r=1682136067&amp;hd=1" class="my_avatar" tittle="ForeverTime" >
-            <span class="my_name">ForeverTime</span>
-        </a>
-    </div>
-    <div class="my_content">
-        <div class="my_p">
-            急急急，我现在就要看第二季
-        </div>
-        <div>
-        </div>
-    </div>
-</div>
-<div class="my_post">
-    <div>
-        <a href="https://bangumi.tv/user/ws123y" target="_blank" class="my_nameBox my_a">
-            <img src="//lain.bgm.tv/pic/user/l/000/58/11/581144.jpg?r=1615047151" class="my_avatar" tittle="ws123y" >
-            <span class="my_name">ws123y</span>
-        </a>
-    </div>
-    <div class="my_content">
-        <div class="my_p">
-            2023年12月21日：最近一个半年连播的原创是不是21年7月的《白沙水族馆》……
-        </div>
-        <div>
-        </div>
-    </div>
-</div>
-<div class="my_post">
-    <div>
-        <a href="https://bangumi.tv/user/731498" target="_blank" class="my_nameBox my_a">
-            <img src="//lain.bgm.tv/pic/user/l/icon.jpg" class="my_avatar" tittle="reddream00" >
-            <span class="my_name">reddream00</span>
-        </a>
-    </div>
-    <div class="my_content">
-        <div class="my_p">
-            急急急，上半部分的期待都压在这里了
-        </div>
-        <div>
-        </div>
-    </div>
-</div>
-<div class="my_post">
-    <div>
-        <a href="https://bangumi.tv/user/620815" target="_blank" class="my_nameBox my_a">
-            <img src="//lain.bgm.tv/pic/user/l/000/62/08/620815.jpg?r=1628659049" class="my_avatar" tittle="Ragnarök" >
-            <span class="my_name">Ragnarök</span>
-        </a>
-    </div>
-    <div class="my_content">
-        <div class="my_p">
-            愛不信等
-        </div>
-        <div>
-        </div>
-    </div>
-</div>
-<div class="my_post">
-    <div>
-        <a href="https://bangumi.tv/user/783087" target="_blank" class="my_nameBox my_a">
-            <img src="//lain.bgm.tv/pic/user/l/000/78/30/783087.jpg?r=1685644873&amp;hd=1" class="my_avatar" tittle="ThermalBunny" >
-            <span class="my_name">ThermalBunny</span>
-        </a>
-    </div>
-    <div class="my_content">
-        <div class="my_p">
-            唉，被JIN坑住了，看看你能不能收好吧
-        </div>
-        <div>
-        </div>
-    </div>
-</div>
-    </div>
-    <script>
-        document.getElementById('0c71f16adf057b6bbf82e72f1bff22e459f46698b2bb669c43006faebe9c8c5b_toggleButton').addEventListener('click', function () {
-            document.getElementById('0c71f16adf057b6bbf82e72f1bff22e459f46698b2bb669c43006faebe9c8c5b_targetElement').style.display = document.getElementById('0c71f16adf057b6bbf82e72f1bff22e459f46698b2bb669c43006faebe9c8c5b_targetElement').style.display === 'none' ? 'block' : 'none';
-        });
-    </script>
-</div>
-</my-threads>
-</my-html>
+		
+	
+</thread-list></my-html>

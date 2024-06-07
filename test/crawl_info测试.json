@@ -4,7 +4,11 @@
         "urlList": [
             {
                 "source": "bangumi",
-                "url": "https://bangumi.tv/subject/467803"
+                "url": "https://bangumi.tv/subject/431767"
+            },
+            {
+                "source": "cycg",
+                "url": "https://www.cycg.xyz/thread-624-1-1.html"
             }
         ]
     }
