@@ -29,10 +29,11 @@
 			list-style-type: none;
 			padding-inline-start: 0px !important;
 			line-height: 24px !important;
+			color: var(--hope-colors-neutral12) !important;
 		}
 
 		.bangumi_tip {
-			color: #666;
+			color: var(--hope-colors-neutral10);
 		}
 
 		.bangumi_char_img {
@@ -41,6 +42,22 @@
 			object-fit: cover;
 			border-radius: 10px;
 			margin: 3px
+		}
+
+		.bangumi_tag_section {
+			margin-top: 10px;
+		}
+
+		.bangumi_tag {
+			display: inline-block;
+			padding: 0 7px;
+			margin-bottom: 4px;
+			height: 28px;
+			border-radius: 7px;
+			font-size: 14px;
+			line-height: 28px;
+			color: var(--hope-colors-neutral11);
+			background-color: var(--hope-colors-neutral4);
 		}
 
 		@media (max-width: 600px) {
@@ -91,6 +108,12 @@
 					<img src="{{ PostImg.BANGUMI_CHAR_IMG }}" class="bangumi_char_img">
 					{% endfor %}
 				</div>
+				<!-- 番剧标签 -->
+				<div class="bangumi_tag_section">
+					{% for tag in thread.data.MainPost.BANGUMI_TAG_LIST %}
+					<span class="bangumi_tag">{{ tag }}</span>
+					{% endfor %}
+				</div>
 			</div>
 		</div>
 	</div>
@@ -114,11 +137,9 @@
 		{% endfor %}
 	</div>
 	<script>
-		const toggleButton{{ thread.data.TOGGLE_ID }} = document.getElementById("{{ thread.data.TOGGLE_ID }}_toggleButton")
-    const targetElement{{ thread.data.TOGGLE_ID }} = document.getElementById("{{ thread.data.TOGGLE_ID }}_targetElement")
-    toggleButton{{ thread.data.TOGGLE_ID }}.addEventListener("click", function () {
-      targetElement{{ thread.data.TOGGLE_ID }}.style.display =
-      targetElement{{ thread.data.TOGGLE_ID }}.style.display ===
+    document.getElementById("{{ thread.data.TOGGLE_ID }}_toggleButton").addEventListener("click", function () {
+      document.getElementById("{{ thread.data.TOGGLE_ID }}_targetElement").style.display =
+      document.getElementById("{{ thread.data.TOGGLE_ID }}_targetElement").style.display ===
         "none" ? "block" : "none";
     });
   </script>

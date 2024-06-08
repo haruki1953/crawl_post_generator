@@ -25,6 +25,10 @@ def generate_html(threadDataList):
 
     # 渲染模板并传入数据
     html = template.render(threadDataList=threadDataList)
+
+    # 最后删除空行
+    # **注意注意：** 最后删除空行是必须的，否则alist的readme可能不会将其解析为html
+    html = re.sub(r'\n\s*\n', '\n', html)
     return html
 
 

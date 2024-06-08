@@ -15,5 +15,7 @@ crawl_info_json = './test/crawl_info.json'
 # 番剧数据文件保存路径
 bgmDataSavePath = './data'
 
-# alist网站的基础路径，用于后续截取alistPath
+# alist网站的基础路径，用于截取alistPath
 alistBasePath = '/home/onedrive/Sakiko'
+# alist网站网址，用于与截取的路径拼接
+alistWebUrl = 'https://bangumi.sakiko.top'

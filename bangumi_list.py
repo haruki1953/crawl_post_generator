@@ -10,6 +10,8 @@ bgmDataSavePath = setting.bgmDataSavePath
 
 # alist网站的基础路径，用于后续截取alistPath
 alistBasePath = setting.alistBasePath
+# alist网站网址，用于与截取的路径拼接
+alistWebUrl = setting.alistWebUrl
 
 # 番剧数据列表
 bangumiList = []
@@ -64,6 +66,8 @@ def push(data, pageInfo, urlInfo):
         alistPath = urlInfo['alistPath']
     else:
         alistPath = alistPathCut(pageInfo['saveFile'])
+    # 拼接完整网址
+    alistPath = alistWebUrl + alistPath
 
     try:
         # 整理数据
@@ -78,6 +82,9 @@ def push(data, pageInfo, urlInfo):
             "date": data['MainPost']['BANGUMI_DATE'],
             "weekday": data['MainPost']['BANGUMI_WEEKDAY'],
             "score": data['MainPost']['BANGUMI_SCORE'],
+            "tagList": data['MainPost']['BANGUMI_TAG_LIST'],
+            "aliasList": data['MainPost']['BANGUMI_ALIAS_LIST'],
+            # "content": data['MainPost']['BANGUMI_CONTENT'],
             # "charsInfo": [{"img": img['BANGUMI_CHAR_IMG']} for img in data['MainPost']['PostImgs']],
             # "comments": [
             #     {
@@ -108,7 +115,9 @@ def save(crawl_info_name):
     file_path = os.path.join(bgmDataSavePath, 'bgm_data-' + crawl_info_name)
     try:
         with open(file_path, 'w', encoding='utf-8') as f:
-            json.dump(bangumiList, f, ensure_ascii=False)
+            # 使用 separators 参数生成紧凑的 JSON 文件
+            json.dump(bangumiList, f, ensure_ascii=False,
+                      separators=(',', ':'))
             print('bangumiList保存成功：{}'.format(file_path))
     except Exception as e:
         print('保存数据时出错: {}, crawl_info_name: {}'.format(e, crawl_info_name))
@@ -146,7 +155,8 @@ def save(crawl_info_name):
     # 保存文件
     try:
         with open(config_path, 'w', encoding='utf-8') as f:
-            json.dump(config, f, ensure_ascii=False)
+            # 保存为便于查看的格式 indent=4 指定每一级缩进使用4个空格
+            json.dump(config, f, ensure_ascii=False, indent=4)
             print('config.json更新成功：{}'.format(config_path))
     except Exception as e:
         print('更新config.json时出错: {}, crawl_info_name: {}'.format(e, crawl_info_name))

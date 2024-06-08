@@ -51,11 +51,9 @@
     {% endfor %}
   </div>
 	<script>
-		const toggleButton{{ thread.data.TOGGLE_ID }} = document.getElementById("{{ thread.data.TOGGLE_ID }}_toggleButton")
-    const targetElement{{ thread.data.TOGGLE_ID }} = document.getElementById("{{ thread.data.TOGGLE_ID }}_targetElement")
-    toggleButton{{ thread.data.TOGGLE_ID }}.addEventListener("click", function () {
-      targetElement{{ thread.data.TOGGLE_ID }}.style.display =
-      targetElement{{ thread.data.TOGGLE_ID }}.style.display ===
+    document.getElementById("{{ thread.data.TOGGLE_ID }}_toggleButton").addEventListener("click", function () {
+      document.getElementById("{{ thread.data.TOGGLE_ID }}_targetElement").style.display =
+      document.getElementById("{{ thread.data.TOGGLE_ID }}_targetElement").style.display ===
         "none" ? "block" : "none";
     });
   </script>
