@@ -16,8 +16,13 @@ def generate_html(threadDataList):
     # 生成HTML
     # threadDataList = [{'data': '帖子数据', 'source': '帖子来源'}, ...]
 
+    # 获取当前脚本文件的绝对路径
+    current_directory = os.path.dirname(os.path.abspath(__file__))
+    # 拼接模板文件夹的绝对路径
+    template_directory = os.path.join(current_directory, 'templates')
+
     # 设置模板文件夹
-    file_loader = FileSystemLoader('templates')
+    file_loader = FileSystemLoader(template_directory)
     env = Environment(loader=file_loader)
 
     # 加载主模板
