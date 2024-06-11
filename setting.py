@@ -13,7 +13,8 @@ crawlersDict = {
 crawl_info_json = './test/crawl_info.json'
 
 # 番剧数据文件保存路径
-bgmDataSavePath = './data'
+bgmDataSavePath = '/www/wwwroot/pan.sakiko.top/home/data'
+# bgmDataSavePath = './data'
 
 # alist网站的基础路径，用于截取alistPath
 alistBasePath = '/home/onedrive/Sakiko'
