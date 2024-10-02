@@ -140,27 +140,27 @@ def get_mainpost_data(postSoup: BeautifulSoup, threadData):
     # 正则表达式匹配获取信息
     """ BANGUMI_CHINESE """
     match = re.search(
-        r'<li><span class="tip">中文名: </span>(.*?)</li>', infoBoxStr)
+        r'<li.*?><span class="tip">中文名: </span>(.*?)</li>', infoBoxStr)
     MainPost['BANGUMI_CHINESE'] = match.group(1) if match else ''
 
     """ BANGUMI_EPISODE """
     match = re.search(
-        r'<li><span class="tip">话数: </span>(.*?)</li>', infoBoxStr)
+        r'<li.*?><span class="tip">话数: </span>(.*?)</li>', infoBoxStr)
     MainPost['BANGUMI_EPISODE'] = match.group(1) if match else ''
 
     """ BANGUMI_DATE """
     match = re.search(
-        r'<li><span class="tip">放送开始: </span>(.*?)</li>', infoBoxStr)
+        r'<li.*?><span class="tip">放送开始: </span>(.*?)</li>', infoBoxStr)
     MainPost['BANGUMI_DATE'] = match.group(1) if match else ''
 
     """ BANGUMI_WEEKDAY """
     match = re.search(
-        r'<li><span class="tip">放送星期: </span>(.*?)</li>', infoBoxStr)
+        r'<li.*?><span class="tip">放送星期: </span>(.*?)</li>', infoBoxStr)
     MainPost['BANGUMI_WEEKDAY'] = match.group(1) if match else ''
 
     """ BANGUMI_ALIAS_LIST """
     matches = re.findall(
-        r'<li><span class="tip".*?>别名: </span>(.*?)</li>', infoBoxStr)
+        r'<li.*?><span class="tip".*?>别名: </span>(.*?)</li>', infoBoxStr)
     MainPost['BANGUMI_ALIAS_LIST'] = matches if matches else []
 
     """ BANGUMI_SCORE """
