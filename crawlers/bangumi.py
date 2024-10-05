@@ -177,7 +177,7 @@ def get_mainpost_data(postSoup: BeautifulSoup, threadData):
         'div', {'class': 'subject_tag_section'})
     tagSectionStr = str(bangumiTagSection)
     matches = re.findall(
-        r'<a class="l" href="/anime/tag/.*?"><span>(.*?)</span>', tagSectionStr)
+        r'<a .*?href="/anime/tag/.*?".*?><span>(.*?)</span>', tagSectionStr)
     MainPost['BANGUMI_TAG_LIST'] = matches if matches else []
 
     """ PostImgs """
