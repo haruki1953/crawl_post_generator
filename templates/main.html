@@ -1,30 +1,60 @@
 <!-- 通用css -->
 <style type="text/css">
+	/* 修改alist中markdown框的样式 */
+	.body.hope-stack>div:nth-of-type(2) {
+		border-radius: 0;
+		padding: 0;
+		background-color: transparent;
+		box-shadow: none;
+	}
+
+	/* 隐藏右上utf8按钮 */
+	.markdown .hope-select__trigger {
+		display: none;
+	}
+
+	/* 隐藏markdown-body顶部的p */
+	.markdown-body>p:nth-of-type(1) {
+		display: none;
+	}
+
 	.my_p {
 		margin: 10px !important;
 		color: var(--hope-colors-neutral12) !important;
 	}
+
 	.my_thread {
-		background-color: var(--hope-colors-neutral2);
 		border-radius: 10px;
-		margin: 10px 0;
-		padding: 10px;
+		margin: 0 0 var(--hope-space-4) 0;
+		padding: 15px;
+		border-radius: var(--hope-radii-xl);
+		background-color: white;
+		box-shadow: var(--hope-shadows-lg);
 	}
+
+	.hope-ui-dark .my_thread {
+		background-color: var(--hope-colors-neutral3);
+	}
+
 	.my_nameBox {
 		display: flex;
 		align-items: center;
 	}
+
 	.my_name {
 		margin: 10px;
 	}
+
 	.my_avatar {
 		width: 44px;
 		border-radius: 50%;
 	}
+
 	.my_a {
 		/* text-decoration: none !important; */
 		color: var(--hope-colors-neutral12) !important;
 	}
+
 	.my_pic {
 		/* width: 192px; */
 		height: 108px;
@@ -32,30 +62,39 @@
 		border-radius: 10px;
 		margin: 3px;
 	}
+
 	.my_button {
 		border-radius: 999em;
 		padding: 0 10px;
 		color: var(--hope-colors-neutral12);
 		background-color: var(--hope-colors-neutral4);
 	}
+
+	.hope-ui-dark .my_button {
+		background-color: var(--hope-colors-neutral2);
+	}
+
+
 	.my_comments {
 		padding-left: 30px;
 	}
+
 	.my_source {
 		display: flex;
 		justify-content: center;
 		margin: 10px;
 	}
+
 	.my_post {
 		margin: 24px 0;
 	}
 </style>
 <thread-list>
 	{% for thread in threadDataList %}
-		{% if thread.source == 'bangumi' %}
-			{% include 'thread-bangumi.html' %}
-		{% else %}
-			{% include 'thread-default.html' %}
-		{% endif %}
+	{% if thread.source == 'bangumi' %}
+	{% include 'thread-bangumi.html' %}
+	{% else %}
+	{% include 'thread-default.html' %}
+	{% endif %}
 	{% endfor %}
 </thread-list>

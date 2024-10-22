@@ -33,7 +33,7 @@
 		}
 
 		.bangumi_tip {
-			color: var(--hope-colors-neutral10);
+			color: var(--hope-colors-neutral11);
 		}
 
 		.bangumi_char_img {
@@ -57,7 +57,11 @@
 			font-size: 14px;
 			line-height: 28px;
 			color: var(--hope-colors-neutral11);
-			background-color: var(--hope-colors-neutral4);
+			background-color: var(--hope-colors-neutral3);
+		}
+
+		.hope-ui-dark .bangumi_tag {
+			background-color: var(--hope-colors-neutral2);
 		}
 
 		@media (max-width: 600px) {
@@ -137,10 +141,10 @@
 		{% endfor %}
 	</div>
 	<script>
-    document.getElementById("{{ thread.data.TOGGLE_ID }}_toggleButton").addEventListener("click", function () {
-      document.getElementById("{{ thread.data.TOGGLE_ID }}_targetElement").style.display =
-      document.getElementById("{{ thread.data.TOGGLE_ID }}_targetElement").style.display ===
-        "none" ? "block" : "none";
-    });
-  </script>
+		document.getElementById("{{ thread.data.TOGGLE_ID }}_toggleButton").addEventListener("click", function () {
+			document.getElementById("{{ thread.data.TOGGLE_ID }}_targetElement").style.display =
+				document.getElementById("{{ thread.data.TOGGLE_ID }}_targetElement").style.display ===
+					"none" ? "block" : "none";
+		});
+	</script>
 </div>
