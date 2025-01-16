@@ -1,13 +1,14 @@
 <div class="my_thread">
   <div class="my_source">
-    <a href="{{ thread.data.THREAD_URL }}" target="_blank" class="my_nameBox my_a">
+    <a href="{{ thread.data.THREAD_URL }}" target="_blank" rel="noopener noreferrer" class="my_nameBox my_a">
       <img src="{{ thread.data.SOURCE_IMG }}" height="44px" title="{{ thread.data.SOURCE_NAME }}" />
     </a>
   </div>
   <!-- MainPost -->
   <div class="my_post">
     <div>
-      <a href="{{ thread.data.MainPost.POST_USER_URL }}" target="_blank" class="my_nameBox my_a">
+      <a href="{{ thread.data.MainPost.POST_USER_URL }}" target="_blank" rel="noopener noreferrer"
+        class="my_nameBox my_a">
         <img src="{{ thread.data.MainPost.POST_USER_IMG }}" class="my_avatar"
           title="{{ thread.data.MainPost.POST_USER_NAME }}">
         <span class="my_name">{{ thread.data.MainPost.POST_USER_NAME }}</span>
@@ -32,7 +33,7 @@
     {% for RePost in thread.data.RePosts %}
     <div class="my_post">
       <div>
-        <a href="{{ RePost.POST_USER_URL }}" target="_blank" class="my_nameBox my_a">
+        <a href="{{ RePost.POST_USER_URL }}" target="_blank" rel="noopener noreferrer" class="my_nameBox my_a">
           <img src="{{ RePost.POST_USER_IMG }}" class="my_avatar" title="{{ RePost.POST_USER_NAME }}">
           <span class="my_name">{{ RePost.POST_USER_NAME }}</span>
         </a>
@@ -50,11 +51,11 @@
     </div>
     {% endfor %}
   </div>
-	<script>
+  <script>
     document.getElementById("{{ thread.data.TOGGLE_ID }}_toggleButton").addEventListener("click", function () {
       document.getElementById("{{ thread.data.TOGGLE_ID }}_targetElement").style.display =
-      document.getElementById("{{ thread.data.TOGGLE_ID }}_targetElement").style.display ===
-        "none" ? "block" : "none";
+        document.getElementById("{{ thread.data.TOGGLE_ID }}_targetElement").style.display ===
+          "none" ? "block" : "none";
     });
   </script>
 </div>

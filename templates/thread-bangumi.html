@@ -76,7 +76,7 @@
 	</style>
 	<div class="my_source">
 		<!-- 来源 -->
-		<a href="{{ thread.data.THREAD_URL }}" target="_blank" class="my_nameBox my_a">
+		<a href="{{ thread.data.THREAD_URL }}" target="_blank" rel="noopener noreferrer" class="my_nameBox my_a">
 			<img src="{{ thread.data.SOURCE_IMG }}" height="44px" title="{{ thread.data.SOURCE_NAME }}">
 		</a>
 	</div>
@@ -96,8 +96,9 @@
 			</ul>
 		</div>
 		<div class="bangumi_content">
-			<!-- 番剧标题链接  -->
-			<a href="{{ thread.data.MainPost.BANGUMI_URL }}" target="_blank" class="my_nameBox my_a">
+			<!-- 番剧标题链接，点击跳转至小窝  -->
+			<a href="https://sakiko.top/#/list?search={{ thread.data.MainPost.BANGUMI_NAME }}" target="_blank"
+				rel="noopener noreferrer" class="my_nameBox my_a">
 				<h2>{{ thread.data.MainPost.BANGUMI_NAME }}</h2>
 			</a>
 			<!-- 番剧介绍内容 -->
@@ -127,7 +128,7 @@
 		{% for RePost in thread.data.RePosts %}
 		<div class="my_post">
 			<div>
-				<a href="{{ RePost.POST_USER_URL }}" target="_blank" class="my_nameBox my_a">
+				<a href="{{ RePost.POST_USER_URL }}" target="_blank" rel="noopener noreferrer" class="my_nameBox my_a">
 					<img src="{{ RePost.POST_USER_IMG }}" class="my_avatar" title="{{ RePost.POST_USER_NAME }}">
 					<span class="my_name">{{ RePost.POST_USER_NAME }}</span>
 				</a>
